@@ -2,7 +2,27 @@ use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
 
+extern crate postgres;
+use postgres::{Connection, TlsMode};
+
+struct Data {
+    id: i32,
+    text: String
+}
+
 fn main() {
+    println!("Start!");
+    let conn = Connection::connect("postgres://postgres:postgres@192.168.1.10:5432", TlsMode::None)
+        .unwrap();
+
+    for row in &conn.query("SELECT * FROM public.testtable", &[]).unwrap() {
+        let data = Data {
+            text : row.get(0),
+            id : row.get(1)
+        };
+        println!("Data:  {} {}",data.text,data.id);
+    }
+    println!("End!");
     let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
 
     for stream in listener.incoming() {
@@ -10,6 +30,7 @@ fn main() {
 
         handle_connection(stream);
     }
+
 }
 
 use std::fs;
