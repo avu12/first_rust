@@ -24,6 +24,7 @@ fn main() {
     }
     println!("End!");
     println!("Testing docker push&pull!");
+    println!("Testing docker push&pull2!");
     let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
 
     for stream in listener.incoming() {
