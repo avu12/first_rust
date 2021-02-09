@@ -23,6 +23,7 @@ fn main() {
         println!("Data:  {} {}",data.text,data.id);
     }
     println!("End!");
+    println!("Testing docker push&pull!");
     let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
 
     for stream in listener.incoming() {
@@ -30,6 +31,7 @@ fn main() {
 
         handle_connection(stream);
     }
+
 
 }
 
