@@ -6,13 +6,13 @@ use std::net::TcpStream;
 fn main() {
     println!("Start!");
     println!("End!");
-    // let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
-    //
-    // for stream in listener.incoming() {
-    //     let stream = stream.unwrap();
-    //
-    //     handle_connection(stream);
-    // }
+    let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
+
+    for stream in listener.incoming() {
+        let stream = stream.unwrap();
+
+        handle_connection(stream);
+    }
 
 
 }
