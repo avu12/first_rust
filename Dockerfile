@@ -8,6 +8,7 @@ RUN cargo install --path .
 
 
 FROM ubuntu
+EXPOSE 8080
 RUN apt-get update
 # Get Ubuntu packages
 RUN apt-get install -y \
